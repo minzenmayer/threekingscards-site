@@ -108,6 +108,12 @@
  .signup input{flex:1;min-width:220px;padding:15px 18px;border-radius:999px;border:none;font-size:15px;}
  .final .handle{margin-top:18px;font-size:15px;color:#d9ccff;}
  .final .handle b{color:#fff;}
+ .final .cform{max-width:460px;margin:0 auto 6px;display:flex;flex-direction:column;gap:10px;text-align:left;}
+ .final .cf-in{width:100%;padding:13px 16px;border-radius:14px;border:none;font-size:15px;font-family:'Inter',sans-serif;color:#1A1526;}
+ .final textarea.cf-in{resize:vertical;min-height:82px;}
+ .final .cform .btn{align-self:center;margin-top:2px;}
+ .final .cf-hp{position:absolute;left:-9999px;}
+ .final .cf-msg{color:#fff;font-weight:600;font-size:14px;text-align:center;min-height:18px;margin-top:2px;}
  footer{background:#1A1526;color:#9a90b5;font-size:13px;padding:30px 0;text-align:center;}
  footer b{color:#fff;}
  @media(max-width:840px){
@@ -145,7 +151,7 @@
  <h1>Open a pack.<br>Give a pack.</h1>
  <p class="lead">Real Pokémon cards, picked by a dad and his two boys. Buy one pack and we send another to a kid having a hard day. Every pack hides a Scribblin, our own hand-drawn creature.</p>
  <div class="hero-cta">
- <a href="mailto:payton.minz@gmail.com?subject=I'd%20like%20a%20Three%20Kings%20pack" class="btn btn-gold">Get a pack</a>
+ <a href="#join" class="btn btn-gold">Get a pack</a>
  <a href="https://instagram.com/threekingscards" class="btn btn-out">Follow on Instagram</a>
  </div>
  <p class="heronote">One pack bought. One pack given. Every time.</p>
@@ -182,7 +188,7 @@
 <section id="packs"><div class="wrap">
  <div class="head"><div class="eyebrow">Pick your pack</div><h2>Something for every kind of collector</h2><p>You know the theme before you buy. Which cards land inside is the fun part. Fresh packs drop all the time and we take custom theme requests.</p></div>
  <div class="packs"><div class="pk"><h3>The Little Brother</h3><p>A couple of bucks for the scrappy little pack that always punches above its weight.</p></div><div class="pk"><h3>Fish Tank</h3><p>Dive in for a tank full of water types, from a floppy Magikarp to a full-grown Gyarados.</p></div><div class="pk"><h3>Rainbow Pack</h3><p>One card from every color, because nobody should have to pick just one favorite type.</p></div><div class="pk"><h3>Starter Squad</h3><p>All the first-partner starters together, so you can finally settle the great Charmander versus Squirtle debate.</p></div><div class="pk"><h3>Eeveelution</h3><p>Eevee and the whole crew of evolutions it can grow into, one lovable fox in every flavor.</p></div><div class="pk"><h3>Holy Grail</h3><p>Our premium pack, built around one big card you can see before you buy. Fewer surprises, more firepower.</p></div></div>
-  <p class="pk-note">Every pack is real, hand-picked Pokémon cards plus one original <b>Scribblin</b>, every single time. Holos and hits show up a lot, and the surprise is half the fun. <a href="mailto:payton.minz@gmail.com?subject=I%27d%20like%20a%20Three%20Kings%20pack" style="color:var(--pur2);font-weight:700;text-decoration:none;">Email us</a> to see what is in stock.</p>
+  <p class="pk-note">Every pack is real, hand-picked Pokémon cards plus one original <b>Scribblin</b>, every single time. Holos and hits show up a lot, and the surprise is half the fun. <a href="#join" style="color:var(--pur2);font-weight:700;text-decoration:none;">Email us</a> to see what is in stock.</p>
 </div></section>
 
 <section id="originals" class="gallery-sec"><div class="wrap">
@@ -193,7 +199,7 @@
   <div class="scard"><img src="/scribblin-3.jpg" alt="The Patient Pebble, a Scribblin drawn by our son" loading="lazy"></div>
   <div class="scard"><img src="/scribblin-4.jpg" alt="Kindhearted Kraken, a Scribblin drawn by our son" loading="lazy"></div>
  </div>
- <div class="hero-cta" style="justify-content:center;margin-top:26px;"><a href="mailto:payton.minz@gmail.com?subject=I'd%20like%20a%20Three%20Kings%20pack" class="btn btn-gold">Get a pack</a></div>
+ <div class="hero-cta" style="justify-content:center;margin-top:26px;"><a href="#join" class="btn btn-gold">Get a pack</a></div>
  <p class="pk-note" style="margin-top:16px;">Are you an artist? We'd love your Scribblin in a pack.</p>
 </div></section>
 
@@ -212,9 +218,19 @@
 
 <section id="join" class="final"><div class="wrap">
  <h2>Come along for the ride</h2>
- <p>We're just getting started. A kitchen table, two little kings, one big idea. Email us to grab a pack, or follow along on Instagram.</p>
- <div class="hero-cta" style="justify-content:center;">
- <a href="mailto:payton.minz@gmail.com?subject=I'd%20like%20a%20Three%20Kings%20pack" class="btn btn-gold">Get a pack</a>
+ <p>We're just getting started. A kitchen table, two little kings, one big idea. Drop us a note to grab a pack or say hi.</p>
+ <form class="cform" id="cform">
+  <input type="hidden" name="access_key" value="15fd9d92-df10-4ec6-b786-2c0bbfdb9f43">
+  <input type="hidden" name="subject" value="New message from the Three Kings Cards site">
+  <input type="hidden" name="from_name" value="Three Kings Cards website">
+  <input class="cf-in" type="text" name="name" placeholder="Your name" required>
+  <input class="cf-in" type="email" name="email" placeholder="Your email" required>
+  <textarea class="cf-in" name="message" rows="3" placeholder="Want a pack? Say hi and tell us what you're after." required></textarea>
+  <input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off">
+  <button type="submit" class="btn btn-gold">Send it</button>
+  <div class="cf-msg" id="cformMsg" role="status"></div>
+ </form>
+ <div class="hero-cta" style="justify-content:center;margin-top:4px;">
  <a href="https://instagram.com/threekingscards" class="btn btn-out" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.7);">Follow on Instagram</a>
  </div>
  <p class="handle" style="margin-top:22px;">Instagram &amp; TikTok: <b>@threekingscards</b></p>
@@ -230,6 +246,9 @@
  var card=document.getElementById('heroPack'),wrap=card.parentElement;
  wrap.addEventListener('pointermove',function(e){var r=wrap.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='rotateY('+(-9+x*20)+'deg) rotateX('+(2-y*14)+'deg)';});
  wrap.addEventListener('pointerleave',function(){card.style.transform='rotateY(-9deg) rotateX(2deg)';});
+
+ var cf=document.getElementById('cform');
+ if(cf){cf.addEventListener('submit',function(e){e.preventDefault();var m=document.getElementById('cformMsg'),b=cf.querySelector('button');m.textContent='Sending...';b.disabled=true;fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(cf)}).then(function(r){return r.json();}).then(function(j){if(j.success){cf.reset();m.textContent='Thanks! We got your note and will reply soon.';}else{m.textContent='That did not send. Please try again or DM us on Instagram.';}b.disabled=false;}).catch(function(){m.textContent='Something went wrong. Please try again or DM us on Instagram.';b.disabled=false;});});}
 </script>
 </body>
 </html>
