@@ -175,6 +175,12 @@
 @keyframes scribFlip{0%,48%{transform:rotateY(0)}56%,72%{transform:rotateY(180deg)}80%,100%{transform:rotateY(0)}}
 @media (max-width:520px){.rip-stage{transform:scale(.86)}}
 @media (prefers-reduced-motion:reduce){.rpack,.rpack-gloss,.rgcard,.sflip,.f-holo:after,.f-fan:after,.f-star:after{animation:none!important}.rgcard{opacity:1}.b1{transform:translate(-112px,-2px) rotate(-22deg)}.b2{transform:translate(-40px,-34px) rotate(-7deg)}.b3{transform:translate(40px,-34px) rotate(7deg)}.b4{transform:translate(112px,-2px) rotate(22deg)}}
+.cardrow .rcard-wrap{opacity:0;transform:translateY(26px) scale(.72);transition:transform .55s cubic-bezier(.34,1.56,.64,1),opacity .45s ease;}
+.cardrow.in .rcard-wrap{opacity:1;transform:none;}
+.cardrow.in .rcard-wrap:nth-child(1){transition-delay:0s;}
+.cardrow.in .rcard-wrap:nth-child(2){transition-delay:.14s;}
+.cardrow.in .rcard-wrap:nth-child(3){transition-delay:.28s;}
+@media (prefers-reduced-motion:reduce){.cardrow .rcard-wrap{opacity:1;transform:none;transition:none;}}
 </style>
 </head>
 <body>
@@ -293,13 +299,16 @@
 </div></footer>
 
 <script>
-
- var card=document.getElementById('heroPack'),wrap=card.parentElement;
- wrap.addEventListener('pointermove',function(e){var r=wrap.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='rotateY('+(-9+x*20)+'deg) rotateX('+(2-y*14)+'deg)';});
- wrap.addEventListener('pointerleave',function(){card.style.transform='rotateY(-9deg) rotateX(2deg)';});
-
- var cf=document.getElementById('cform');
- if(cf){cf.addEventListener('submit',function(e){e.preventDefault();var m=document.getElementById('cformMsg'),b=cf.querySelector('button');m.textContent='Sending...';b.disabled=true;fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(cf)}).then(function(r){return r.json();}).then(function(j){if(j.success){cf.reset();m.textContent='Thanks! We got your note and will reply soon.';}else{m.textContent='That did not send. Please try again or DM us on Instagram.';}b.disabled=false;}).catch(function(){m.textContent='Something went wrong. Please try again or DM us on Instagram.';b.disabled=false;});});}
+(function(){
+  var row=document.querySelector('.cardrow');
+  if(row){
+    var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(rm||!('IntersectionObserver' in window)){row.classList.add('in');}
+    else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){row.classList.add('in');io.disconnect();}});},{threshold:.35});io.observe(row);}
+  }
+  var cf=document.getElementById('cform');
+  if(cf){cf.addEventListener('submit',function(e){e.preventDefault();var m=document.getElementById('cformMsg'),b=cf.querySelector('button');m.textContent='Sending...';b.disabled=true;fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(cf)}).then(function(r){return r.json();}).then(function(j){if(j.success){cf.reset();m.textContent='Thanks! We got your note and will reply soon.';}else{m.textContent='That did not send. Please try again or DM us on Instagram.';}b.disabled=false;}).catch(function(){m.textContent='Something went wrong. Please try again or DM us on Instagram.';b.disabled=false;});});}
+})();
 </script>
 </body>
 </html>
